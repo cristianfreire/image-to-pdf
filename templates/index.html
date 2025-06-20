@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Imagens para PDF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Converter Imagens em PDF</h1>
+        <form action="/convert" method="post" enctype="multipart/form-data">
+            <label for="file-upload" class="custom-file-upload">
+                Selecionar Imagens
+            </label>
+            <input id="file-upload" style="display: none;" type="file" name="images" multiple required>
+            <div id="file-names" class="file-selected"></div>
+            <button type="submit">Converter para PDF</button>
+        </form>
+        
+        <div class="footer">
+            &copy; 2025 - SeuSitePDF.com
+        </div>
+    </div>
+</body>
+
+<script>
+    document.getElementById('file-upload').addEventListener('change', function() {
+        const fileList = this.files;
+        let fileNames = '';
+    
+        for (let i = 0; i < fileList.length; i++) {
+            fileNames += fileList[i].name + '<br>';
+        }
+    
+        document.getElementById('file-names').innerHTML = fileNames;
+    });
+    </script>
+    
+</html>
